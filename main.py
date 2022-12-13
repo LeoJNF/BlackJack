@@ -1,5 +1,5 @@
 from random import choice
-from uteiss.nai import escolhas, color
+from nai import escolhas, color
 from time import sleep
 
 
