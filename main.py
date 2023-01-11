@@ -3,7 +3,7 @@ from nai import escolhas, color
 from time import sleep
 
 
-baralho = [[x for x in range(13)], [x for x in range(13)],[x for x in range(13)],[x for x in range(13)]]
+baralho = [[x for x in range(13)], [x for x in range(13)],[x for x in range(13)],[x for x in range(13)]] // Criação do baralho que vai ser usado, neste caso são quatro baralhos
 naip = [0, 1, 2, 3]
 
 jogador = [[], [], []]
@@ -16,10 +16,11 @@ print(f"{'BLACKJACK':.^35}")
 
 print("O crupiêr está embaralhando as cartas")
 for escolha in range(4):
-    naipesc = choice(naip)
-    cartaesc = choice(baralho[naipesc])
-    baralho[naipesc].remove(cartaesc)
-    if escolha == 0 or escolha == 2:
+    naipesc = choice(naip) # Selecionando o naipe da carta
+    cartaesc = choice(baralho[naipesc]) # Selecionando aleatoriamente o valor da carta
+    baralho[naipesc].remove(cartaesc) # Removendo a carta do baralho para não ser escolhida novamente
+    
+    if escolha == 0 or escolha == 2: # Dando as cartas para o jogador e o computador
         escolhas(jogador, cartaesc, naipesc)
         sleep(2)
         print(f"\n{i+1}º carta do jogador: {jogador[2][i]} de {jogador[1][i]}")
@@ -34,7 +35,7 @@ for escolha in range(4):
         print("\n2º carta do crupiêr: Oculta")
 
 if "Ás" in jogador[2] and "Valete" in jogador[2] or "Dama" in jogador[2] and "Ás" in jogador[2] \
-        or "Rei" in jogador[2] and "Ás" in jogador[2]:
+        or "Rei" in jogador[2] and "Ás" in jogador[2]: #Verificando se a combinação das cartas do jogador deu 21
     jogador[0].clear()
     jogador[0].append(21)
     print("Você Fez 21!!!")
@@ -42,7 +43,7 @@ if "Ás" in jogador[2] and "Valete" in jogador[2] or "Dama" in jogador[2] and "�
 print("."*35)
 
 while True:
-    if sum(jogador[0]) >= 21:
+    if sum(jogador[0]) >= 21: # se o total de cartas do jogador for maior que 21 o laço para
         break
     print(f"\nAté aqui você tem {len(jogador[0])} cartas,\nno total de {sum(jogador[0])}.")
     cont = int(input("\nQuer mais carta? 1[sim] 2[nao]: "))
@@ -66,7 +67,7 @@ sleep(2)
 print(f"\n2º carta do crupier revelada: {compu[2][u]} de {compu[1][u]}")
 
 if "Ás" in compu[2] and "Valete" in compu[2] or "Dama" in compu[2] and "Ás" in compu[2] \
-        or "Rei" in compu[2] and "Ás" in compu[2]:
+        or "Rei" in compu[2] and "Ás" in compu[2]: #Verificando se a combinação das cartas do computador deu 21
     compu[0].clear()
     compu[0].append(21)
 
@@ -77,7 +78,7 @@ u += 1
 print("."*35)
 
 
-while sum(compu[0]) < sum(jogador[0]) <= 21:
+while sum(compu[0]) < sum(jogador[0]) <= 21: #se a soma do computador for menor que a sua, seleciona mais carta
     print("Crupiêr vai pegar mais uma carta")
     naipesc = choice(naip)
     cartaesc = choice(baralho[naipesc])
